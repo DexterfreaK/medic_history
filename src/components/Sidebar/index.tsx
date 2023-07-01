@@ -42,17 +42,19 @@ export default function Sidebar(props: sidebarProps) {
             Medic History
           </div>
           <ul className="space-y-2 my-[10vh] font-medium">
-            {props.sidebarItems.map((item: any, index: number) => (
-              <li key={index}>
-                <a
-                  href={item.link}
-                  className="flex items-center p-[3.5vh] text-gray-900 rounded-lg hover:text-[#D9DEFF] hover:bg-[#545fdd] text-lg"
-                >
-                  {item.icon}
-                  <span className="ml-3">{item.name}</span>
-                </a>
-              </li>
-            ))}
+            {props.sidebarItems && props.sidebarItems.map(
+              (item: any, index: number) => (
+                <li key={index}>
+                  <a
+                    href={item.link}
+                    className="flex items-center p-[3.5vh] text-gray-900 rounded-lg hover:text-[#D9DEFF] hover:bg-[#545fdd] text-lg"
+                  >
+                    {item.icon}
+                    <span className="ml-3">{item.name}</span>
+                  </a>
+                </li>
+              )
+            )}
           </ul>
           <div className="text-center border-gray-300 border-2 rounded-lg p-[.8vw] mb-[5vh] mx-[2vw] flex items-center">
             <Image
