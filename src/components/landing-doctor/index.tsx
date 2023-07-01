@@ -79,7 +79,10 @@ export default function Landing(props: LandingProps) {
 
         <div className="w-100%">
           <div className="font-bold text-xl mb-5">Create New Reciept</div>
-          <button className="border-dashed flex p-[5vw] border-2 rounded-3xl justify-items-center justify-center place-items-center">
+          <a
+            className="border-dashed flex p-[5vw] border-2 rounded-3xl justify-items-center justify-center place-items-center"
+            href="/dashboard-doctor/create-new-reciept"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -94,7 +97,7 @@ export default function Landing(props: LandingProps) {
                 d="M12 4.5v15m7.5-7.5h-15"
               />
             </svg>
-          </button>
+          </a>
         </div>
       </div>
       <div className=""></div>

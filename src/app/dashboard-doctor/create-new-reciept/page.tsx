@@ -1,6 +1,7 @@
 import Sidebar from "@/components/Sidebar";
-import SearchBar from "@/components/searchBar";
-import Landing from "@/components/landing-doctor";
+import NewReciepts from "@/components/newReciepts";
+
+
 import Image from "next/image";
 
 export default function Home() {
@@ -43,12 +44,12 @@ export default function Home() {
           />
         </svg>
       ),
-      link: "/dashboard-doctor/patientList",
+      link: "/patientList",
     },
     {
       name: "Med Request",
       icon: "/",
-      link: "/dashboard-doctor/medRequest",
+      link: "/",
     },
   ];
   const profileName = "Tim Hatheway";
@@ -63,13 +64,8 @@ export default function Home() {
         }
       />
       <div className="ml-[16rem]">
-        <SearchBar />
-        <Landing
-          name={profileName}
-          designation="Senior Psychiatrist"
-          hospital="KLM Group of Hospital"
-          operatingHours="07:00 AM - 11:00 PM"
-        />
+        {/* <SearchBar /> */}
+        <NewReciepts/>
       </div>
     </main>
   );
