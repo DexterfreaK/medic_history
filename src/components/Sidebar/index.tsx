@@ -1,30 +1,12 @@
 import Image from "next/image";
 
-export default function Sidebar() {
-  const sidebarItem = [
-    {
-      name: "Home",
-      icon: "/",
-      link: "/",
-    },
-    {
-      name: "Timeline View",
-      icon: "/",
-      link: "/",
-    },
-    {
-      name: "Medical History",
-      icon: "/",
-      link: "/",
-    },
-    {
-      name: "Doctors Consulted",
-      icon: "/",
-      link: "/",
-    },
-  ];
+interface sidebarProps {
+  sidebarItems: any;
+  profileIconLink: String;
+  profileName: String;
+}
 
-
+export default function Sidebar(props: sidebarProps) {
   return (
     <>
       <button
@@ -56,23 +38,17 @@ export default function Sidebar() {
         aria-label="Sidebar"
       >
         <div className="h-full px-3 py-4 overflow-y-auto flex flex-col justify-between drop-shadow-2xl">
-          <div className="text-center py-[5vh] font-bold text-3xl">Medic History</div>
+          <div className="text-center py-[5vh] font-bold text-3xl">
+            Medic History
+          </div>
           <ul className="space-y-2 my-[10vh] font-medium">
-            {sidebarItem.map((item, index) => (
+            {props.sidebarItems.map((item: any, index: number) => (
               <li key={index}>
                 <a
-                  href="#"
-                  className="flex items-center p-[3.5vh] text-gray-900 rounded-lg hover:text-[#D9DEFF] hover:bg-[#545fdd] "
+                  href={item.link}
+                  className="flex items-center p-[3.5vh] text-gray-900 rounded-lg hover:text-[#D9DEFF] hover:bg-[#545fdd] text-lg"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    width="24px"
-                    height="24px"
-                    className="hover:color:white"
-                  >
-                    <path d="M 12 2.0996094 L 1 12 L 4 12 L 4 21 L 11 21 L 11 15 L 13 15 L 13 21 L 20 21 L 20 12 L 23 12 L 12 2.0996094 z M 12 4.7910156 L 18 10.191406 L 18 11 L 18 19 L 15 19 L 15 13 L 9 13 L 9 19 L 6 19 L 6 10.191406 L 12 4.7910156 z" />
-                  </svg>
+                  {item.icon}
                   <span className="ml-3">{item.name}</span>
                 </a>
               </li>
@@ -80,16 +56,14 @@ export default function Sidebar() {
           </ul>
           <div className="text-center border-gray-300 border-2 rounded-lg p-[.8vw] mb-[5vh] mx-[2vw] flex items-center">
             <Image
-              src={
-                "https://images.unsplash.com/photo-1595703013566-db085ae93c04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=988&q=80"
-              }
+              src={`${props.profileIconLink}`}
               alt="Profile Icon"
               className="object-cover rounded-full"
               width={40}
               height={40}
               style={{ height: "40px" }}
             />
-            <div className="mx-[1vw]">Otter King</div>
+            <div className="mx-[1vw]">{props.profileName}</div>
           </div>
         </div>
       </aside>

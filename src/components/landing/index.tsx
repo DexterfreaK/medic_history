@@ -86,12 +86,15 @@ function UpcomingAppointmentBox() {
     </div>
   );
 }
-export default function Landing() {
+interface LandingProps {
+  name: string;
+}
+export default function Landing(props: LandingProps) {
   return (
     <div className="flex ">
       <div className="w-[60vw] px-[3vw] border-r-2">
         <div className="headline_greeting text-[#20234B] text-3xl font-bold mt-[3vw] ">
-          Welcome, Christine👋
+          Welcome, {props.name}👋
         </div>
         <div className="subtext_greeting text-[#6F7173]">
           Have any medical issue? we’re here to help you
