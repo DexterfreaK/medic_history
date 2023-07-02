@@ -41,6 +41,7 @@ export default function PatientListLanding() {
       <div className="grid grid-cols-3">
         {new Array(10).fill(0).map((_, i) => (
           <PatientBox
+            key={i}
             patientLastVisit="12/12/2021"
             patientName="Mansingh"
             patientAdd="Clock Tower Jail,Road No 11,Pilani(Raj)"

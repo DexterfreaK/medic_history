@@ -42,6 +42,7 @@ export default function DoctorsConsultedLanding() {
       <div className="grid grid-cols-3">
         {new Array(4).fill(0).map((_, i) => (
           <BasicDocinfo
+            key={i}
             docName={"Dr Mansingh Singh"}
             designation={"Cardiologist"}
             hospital={"Apollo Hospital"}

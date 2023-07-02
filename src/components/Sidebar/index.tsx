@@ -112,13 +112,8 @@ export default function Sidebar(props: sidebarProps) {
       link: "/dashboard-patient/timeline",
     },
     {
-      name: "Medical History",
-      icon: "/",
-      link: "/dashboard-patient",
-    },
-    {
       name: "Doctors Consulted",
-      icon: "/",
+      icon: "🩺",
       link: "/dashboard-patient/doctor-consulted",
     },
   ];
