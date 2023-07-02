@@ -29,6 +29,7 @@ export default function Home() {
               id="first_name"
               className="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required
+              disabled
             />
           </div>
           <div className="py-[1vh]">
@@ -43,6 +44,7 @@ export default function Home() {
               id="first_name"
               className="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required
+              disabled
             />
           </div>
 
@@ -67,15 +69,23 @@ export default function Home() {
 
           <div
             id="toast-default"
-            className="flex mt-[4vh] items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+            className="flex mt-[4vh] items-center w-full max-w-lg p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
             role="alert"
           >
             <div className="ml-3 text-sm font-normal">
               Backend Requires SSL Certificate which we were unable to install.
               <br />
+              <br />
               Hence we would be grateful if you could turn off connection
-              security in your browser. For more info :
-              <a href="https://github.com/vercel/vercel/discussions/5287" > Link</a>
+              security in your browser. For more info :{" "}
+              <a href="https://github.com/vercel/vercel/discussions/5287">
+                {" "}
+                Click Here
+              </a>
+              <br />
+              OR you can clone and locally run the project as well
+              <br />
+              Thank you for your cooperation.
             </div>
           </div>
         </div>
