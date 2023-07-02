@@ -1,9 +1,11 @@
 "use client";
-import { useState } from "react";
+import axios from "axios";
+import { use, useEffect, useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 
 interface appointmentBoxProps {
   VisitName: string;
+  docName: string;
   VisitDate: string;
   ReceiptURL: string;
   setPreviewUrl?: Dispatch<SetStateAction<string>>;
@@ -16,6 +18,7 @@ function UpcomingAppointmentBox(props: appointmentBoxProps) {
         <h5 className="text-2xl font-semibold text-gray-900 dark:text-white">
           {props.VisitName}
         </h5>
+        <p className="text-gray-500">{props.docName}</p>
         <p className="text-gray-500">{props.VisitDate}</p>
       </div>
       <div className="flex justify-stretch w-100">
@@ -42,7 +45,15 @@ function UpcomingAppointmentBox(props: appointmentBoxProps) {
 }
 
 export default function TimelineComp() {
+  const userID = "7110489d-2";
   const [PreviewUrl, setPreviewUrl] = useState("");
+  const [data, setData] = useState([] as any);
+  useEffect(() => {
+    axios.get(`http://3.82.104.37:8000/timeline/?id=${userID}`).then((res) => {
+      console.log(res.data);
+      setData(res.data);
+    });
+  }, []);
 
   return (
     <>
@@ -50,69 +61,22 @@ export default function TimelineComp() {
       <div className="flex">
         <div>
           <div className="w-[50vw]">
-            <div className="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50 ">
-              <time className="text-lg font-semibold text-gray-900 dark:text-white">
-                July 2nd, 2023
-              </time>
-              <ol className="mt-3 divide-y divider-gray-200 dark:divide-gray-700 flex">
-                <UpcomingAppointmentBox
-                  setPreviewUrl={setPreviewUrl}
-                  VisitName="Family Doctor Visit"
-                  VisitDate="03.07.2023 at 07:23 PM"
-                  ReceiptURL="https://www.drishtiias.com/pdf/1594399406-world-war-i-1.pdf"
-                />
-                <UpcomingAppointmentBox
-                  setPreviewUrl={setPreviewUrl}
-                  VisitName="Family Doctor Visit"
-                  VisitDate="03.07.2023 at 07:23 PM"
-                  ReceiptURL="https://eforms.com/images/2019/01/Medical-Bill-Receipt-Template.png"
-                />
-
-                {/* <UpcomingAppointmentBox /> */}
-              </ol>
-            </div>
-
-            <div className="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50 ">
-              <time className="text-lg font-semibold text-gray-900 dark:text-white">
-                July 1st, 2023
-              </time>
-              <ol className="mt-3 divide-y divider-gray-200 dark:divide-gray-700 flex">
-                <UpcomingAppointmentBox
-                  setPreviewUrl={setPreviewUrl}
-                  VisitName="Family Doctor Visit"
-                  VisitDate="03.07.2023 at 07:23 PM"
-                  ReceiptURL="https://images.template.net/wp-content/uploads/2017/05/Doctor-Payment-Receipt.jpg"
-                />
-              </ol>
-            </div>
-
-            <div className="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50 ">
-              <time className="text-lg font-semibold text-gray-900 dark:text-white">
-                June 30th, 2023
-              </time>
-              <ol className="mt-3 divide-y divider-gray-200 dark:divide-gray-700 flex">
-                <UpcomingAppointmentBox
-                  setPreviewUrl={setPreviewUrl}
-                  VisitName="Family Doctor Visit"
-                  VisitDate="03.07.2023 at 07:23 PM"
-                  ReceiptURL="https://images.template.net/wp-content/uploads/2017/05/Doctor-Payment-Receipt.jpg"
-                />
-              </ol>
-            </div>
-
-            <div className="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50 ">
-              <time className="text-lg font-semibold text-gray-900 dark:text-white">
-                June 30th, 2023
-              </time>
-              <ol className="mt-3 divide-y divider-gray-200 dark:divide-gray-700 flex">
-                <UpcomingAppointmentBox
-                  setPreviewUrl={setPreviewUrl}
-                  VisitName="Family Doctor Visit"
-                  VisitDate="03.07.2023 at 07:23 PM"
-                  ReceiptURL="https://images.template.net/wp-content/uploads/2017/05/Doctor-Payment-Receipt.jpg"
-                />
-              </ol>
-            </div>
+            {data.map((item: any, index: number) => (
+              <div className="p-5 mb-4 border border-gray-100 rounded-lg bg-gray-50 " key={index}>
+                <time className="text-lg font-semibold text-gray-900 dark:text-white">
+                  July 1st, 2023
+                </time>
+                <ol className="mt-3 divide-y divider-gray-200 dark:divide-gray-700 flex">
+                  <UpcomingAppointmentBox
+                    setPreviewUrl={setPreviewUrl}
+                    VisitName={item.visit_name}
+                    docName={item.doc_name}
+                    VisitDate={item.date}
+                    ReceiptURL={item.pdf_link}
+                  />
+                </ol>
+              </div>
+            ))}
           </div>
         </div>
         <div className="rounded-lg relative border-2">

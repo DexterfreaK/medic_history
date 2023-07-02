@@ -8,14 +8,13 @@ import { useEffect, useState } from "react";
 import DoctorsConsultedLanding from "@/components/doctorsConsultedLanding";
 
 export default function Home() {
-  const patientId = "64aa3e4e-5";
-
+  const patientId = "7110489d-2"; ;
   const [docData, setDocData] = useState([] as any);
-
   useEffect(() => {
     axios
       .get(`http://3.82.104.37:8000/patient/?id=${patientId}`)
       .then((res) => {
+        console.log(res.data);
         setDocData(res.data.doc);
         console.log(res.data.doc);
         localStorage.setItem("doctorData", JSON.stringify(res.data));

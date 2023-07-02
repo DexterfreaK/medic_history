@@ -40,11 +40,13 @@ function BasicDocinfo(props: BasicDocinfoProps) {
 
 const Doctor = ({ ID }: { ID: any }) => {
   const [docData, setDocData] = useState({} as any);
+  console.log(ID);
 
   axios
     .get(`http://3.82.104.37:8000/doc/?id=${ID.slice(0, 10)}`)
     .then((res) => {
       console.log(res.data);
+     
       setDocData(res.data);
     });
   return (
