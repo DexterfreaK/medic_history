@@ -6,7 +6,7 @@ import TimelineComp from "@/components/TimelineComp";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function timeline() {
+export default function Timeline() {
   const uuid = "4b5df29f-9";
   const [patientData, setPatientData] = useState({} as any);
 

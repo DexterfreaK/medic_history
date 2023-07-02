@@ -7,7 +7,7 @@ import axios from "axios";
 import { useEffect ,useState} from "react";
 
 
-export default function dasboardPatient() {
+export default function DasboardPatient() {
 
   const uuid = "4b5df29f-9";
   const [patientData, setPatientData] = useState({} as any);
