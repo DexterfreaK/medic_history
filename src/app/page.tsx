@@ -75,6 +75,7 @@ export default function Home() {
             <div className="ml-3 text-sm font-normal">
               Backend Requires SSL Certificate which we were unable to install.
               <br />
+              Hence for the frontend APP to make API CAlls
               <br />
               Hence we would be grateful if you could turn off connection
               security in your browser. For more info :{" "}

@@ -115,7 +115,9 @@ function EditModal(props: LandingProps) {
                 type="time"
                 id="first_name"
                 className="w-[90%] mx-[1vw] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                defaultValue={props.operatingHours.split(" ")[0]}
+                defaultValue={
+                  props.operatingHours && props.operatingHours.split(" ")[0]
+                }
                 // onChange={}
                 required
               />
@@ -124,7 +126,9 @@ function EditModal(props: LandingProps) {
                 type="time"
                 id="first_name"
                 className="w-[90%] mx-[1vw] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                defaultValue={props.operatingHours.split(" ")[2]}
+                defaultValue={
+                  props.operatingHours && props.operatingHours.split(" ")[2]
+                }
                 required
               />
             </div>

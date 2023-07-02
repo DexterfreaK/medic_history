@@ -177,16 +177,6 @@ export default function Sidebar(props: sidebarProps) {
                 ))}
           </ul>
           <div className="text-center border-gray-300 border-2 rounded-lg p-[.8vw] mb-[5vh] mx-[2vw] flex items-center">
-            {props.profileIconLink && (
-              <Image
-                src={`${props.profileIconLink}`}
-                alt="Profile Icon"
-                className="object-cover rounded-full"
-                width={40}
-                height={40}
-                style={{ height: "40px" }}
-              />
-            )}
             <div className="mx-[1vw]">{props.profileName}</div>
           </div>
         </div>
