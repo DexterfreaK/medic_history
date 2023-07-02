@@ -1,4 +1,12 @@
-function AppointmnetBox() {
+"use client";
+import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
+
+interface AppointmentBoxProps {
+  setModal: Dispatch<SetStateAction<boolean>>;
+  upload?: boolean;
+}
+function AppointmnetBox(props: AppointmentBoxProps) {
   return (
     <div className="w-100% my-[2vh]">
       <div className="relative w-[320px]">
@@ -50,9 +58,23 @@ function AppointmnetBox() {
           </defs>
         </svg>
         <div className="absolute inset-[2vw] text-white text-xl">
-          Make An Appointment
+          {props.upload ? "Upload Previous Reports" : "Make An Appointment"}
         </div>
-        <div className="absolute bottom-[1.5vw] right-[2vw] text-xl bg-white h-10 w-10 text-center rounded-full"></div>
+        <button type="button" onClick={() => props.setModal(true)}>
+          <div className=" text-black text-xl">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              className=" absolute w-10 h-10 text-black z-50 bottom-[3vw] right-[35px] bg-white rounded-full p-1"
+            >
+              <path
+                fillRule="evenodd"
+                d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
+        </button>
       </div>
     </div>
   );
@@ -86,37 +108,201 @@ function UpcomingAppointmentBox() {
     </div>
   );
 }
-interface LandingProps {
-  name: string;
-}
-export default function Landing(props: LandingProps) {
+
+function AppointmentModal(props: AppointmentBoxProps) {
   return (
-    <div className="flex ">
-      <div className="w-[60vw] px-[3vw] border-r-2">
-        <div className="headline_greeting text-[#20234B] text-3xl font-bold mt-[3vw] ">
-          Welcome, {props.name}👋
+    <div className="modal z-[1000] fixed w-[100vw] h-[100vh] top-0 left-0 flex items-center justify-center">
+      <div className="relative bg-white min-h-[60vh] w-[60vw] rounded-2xl border-2 p-2">
+        <button
+          type="button"
+          className="absolute top-[20px] right-[10px] focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-2.5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          onClick={() => props.setModal(false)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        <div className="w-[100%] text-4xl font-bold p-[3vw]">
+          Create a new Appointment
         </div>
-        <div className="subtext_greeting text-[#6F7173]">
-          Have any medical issue? we’re here to help you
-        </div>
-
-        <AppointmnetBox />
-        <div className="w-100%">
-          <div className="font-bold text-xl">Upcoming Appointments</div>
-          <div className="flex p-[1vw]">
-            <UpcomingAppointmentBox />
-            <UpcomingAppointmentBox />
+        <div>
+          <div className="px-[3vw] py-[1vh]">
+            <label
+              htmlFor="position"
+              className="block mb-2 text-sm font-medium "
+            >
+              Doctor UUID
+            </label>
+            <input
+              type="text"
+              id="first_name"
+              className="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
           </div>
-        </div>
-
-        <div className="w-100%">
-          <div className="font-bold text-xl">Current Prescriptions</div>
-          <div className="flex p-[1vw]">
-            <UpcomingAppointmentBox />
+          <div className="px-[3vw] mt-[1vh">
+            <label
+              htmlFor="position"
+              className="block mb-2 text-sm font-medium "
+            >
+              Date & Time for Appointment
+            </label>
+            <input
+              type="datetime-local"
+              id="first_name"
+              className="w-[30%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+          <div className="px-[3vw] mt-[1vh]">
+            <label
+              htmlFor="position"
+              className="block mb-2 text-sm font-medium "
+            >
+              Reason For Appointment
+            </label>
+            <textarea
+              className="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
           </div>
         </div>
       </div>
-      <div className=""></div>
     </div>
+  );
+}
+
+function UploadModalComp(props: AppointmentBoxProps) {
+  return (
+    <div className="modal z-[1000] fixed w-[100vw] h-[100vh] top-0 left-0 flex items-center justify-center">
+      <div className="relative bg-white min-h-[60vh] w-[60vw] rounded-2xl border-2 p-2">
+        <button
+          type="button"
+          className="absolute top-[20px] right-[10px] focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-2.5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+          onClick={() => props.setModal(false)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        <div className="w-[100%] text-4xl font-bold p-[3vw]">
+          Upload Previous Reports
+        </div>
+        <div>
+          <div className="px-[3vw] mt-[1vh">
+            <label
+              htmlFor="position"
+              className="block mb-2 text-sm font-medium "
+            >
+              Date & Time for Appointment
+            </label>
+            <input
+              type="datetime-local"
+              id="first_name"
+              className="w-[30%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+          <div className="px-[3vw] mt-[1vh]">
+            <label
+              htmlFor="position"
+              className="block mb-2 text-sm font-medium "
+            >
+              Reason For Appointment
+            </label>
+            <textarea
+              className="w-[90%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              required
+            />
+          </div>
+          <div className="px-[3vw] mt-[1vh]">
+            <label
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              htmlFor="file_input"
+            >
+              Upload file
+            </label>
+            <input
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+              id="file_input"
+              type="file"
+            />
+          </div>
+          <div className="px-[3vw] mt-[2vh]">
+            <button
+              type="button"
+              className="text-white w-[100%] bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            >
+              Upload
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+interface LandingProps {
+  name: string;
+}
+
+export default function Landing(props: LandingProps) {
+  const [modal, setModal] = useState(false);
+  const [UploadModal, setUploadModal] = useState(false);
+
+  return (
+    <>
+      {modal && <AppointmentModal setModal={setModal} />}
+      {UploadModal && <UploadModalComp setModal={setUploadModal} />}
+      <div className="flex z-[500] relative">
+        <div className=" w-[60vw] px-[3vw] border-r-2">
+          <div className="headline_greeting text-[#20234B] text-3xl font-bold mt-[3vw] ">
+            Welcome, {props.name}👋
+          </div>
+          <div className="subtext_greeting text-[#6F7173]">
+            Have any medical issue? we’re here to help you
+          </div>
+          <div className="flex">
+            <AppointmnetBox setModal={setModal} />
+            <AppointmnetBox setModal={setUploadModal} upload />
+          </div>
+          <div className="w-100%">
+            <div className="font-bold text-xl">Upcoming Appointments</div>
+            <div className="flex p-[1vw]">
+              <UpcomingAppointmentBox />
+              <UpcomingAppointmentBox />
+            </div>
+          </div>
+
+          <div className="w-100%">
+            <div className="font-bold text-xl">Current Prescriptions</div>
+            <div className="flex p-[1vw]">
+              <UpcomingAppointmentBox />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

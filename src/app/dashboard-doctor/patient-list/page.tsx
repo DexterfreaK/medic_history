@@ -5,6 +5,7 @@ import Landing from "@/components/landing-doctor";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import PatientListlanding from "@/components/patientListLanding";
 
 export default function Home() {
 
@@ -29,12 +30,7 @@ export default function Home() {
       />
       <div className="ml-[16rem]">
         <SearchBar uuid={docData.short_uuid} />
-        <Landing
-          name={docData.name}
-          designation={docData.designation}
-          hospital={docData.location}
-          operatingHours={docData.working_hrs}
-        />
+        <PatientListlanding/>
       </div>
     </main>
   );

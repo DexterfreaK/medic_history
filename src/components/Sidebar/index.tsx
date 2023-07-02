@@ -46,7 +46,7 @@ export default function Sidebar(props: sidebarProps) {
           />
         </svg>
       ),
-      link: "/patientList",
+      link: "/dashboard-doctor/patient-list",
     },
     {
       name: "New Prescription Recipet",
@@ -119,7 +119,7 @@ export default function Sidebar(props: sidebarProps) {
     {
       name: "Doctors Consulted",
       icon: "/",
-      link: "/dashboard-patient",
+      link: "/dashboard-patient/doctor-consulted",
     },
   ];
   return (
