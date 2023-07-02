@@ -10,8 +10,7 @@ export default function Home() {
     <main className="">
       <div className="bg- z-[1000] fixed w-[100vw] h-[100vh] top-0 left-0 flex items-center justify-center">
         <div>
-
-          <Image src={LandingPageAsset} alt="Landing" width={600}/>
+          <Image src={LandingPageAsset} alt="Landing" width={600} />
         </div>
         <div>
           <div className="text-6xl font-bold">Medic History 🩺</div>
@@ -74,8 +73,9 @@ export default function Home() {
             <div className="ml-3 text-sm font-normal">
               Backend Requires SSL Certificate which we were unable to install.
               <br />
-              Hence we would be grateful if you could clone and run in
-              localhost.
+              Hence we would be grateful if you could turn off connection
+              security in your browser. For more info :
+              <a href="https://github.com/vercel/vercel/discussions/5287" > Link</a>
             </div>
           </div>
         </div>
