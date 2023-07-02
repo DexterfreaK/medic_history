@@ -1,9 +1,11 @@
 
 MEDIC HISTORY PROJECT
-
 This Repo Contains the Frontend work
-Backend Repo - https://github.com/JManan/backend-mercor
-Figma - https://www.figma.com/file/iJM5WN9cEHVdnDczh0b8dC/Hackathon
+
+
+For Backend Repo - https://github.com/JManan/backend-mercor
+
+For Figma - https://www.figma.com/file/iJM5WN9cEHVdnDczh0b8dC/Hackathon
 
 
 
