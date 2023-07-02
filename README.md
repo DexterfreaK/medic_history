@@ -1,3 +1,12 @@
+
+MEDIC HISTORY PROJECT
+
+This Repo Contains the Frontend work
+Backend Repo - https://github.com/JManan/backend-mercor
+Figma - https://www.figma.com/file/iJM5WN9cEHVdnDczh0b8dC/Hackathon
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
