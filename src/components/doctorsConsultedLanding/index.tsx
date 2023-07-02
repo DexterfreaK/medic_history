@@ -38,33 +38,36 @@ function BasicDocinfo(props: BasicDocinfoProps) {
   );
 }
 
-export default function DoctorsConsultedLanding(props: DocinfoProps) {
+const Doctor = ({ ID }: { ID: any }) => {
+  const [docData, setDocData] = useState({} as any);
 
+  axios
+    .get(`http://3.82.104.37:8000/doc/?id=${ID.slice(0, 10)}`)
+    .then((res) => {
+      console.log(res.data);
+      setDocData(res.data);
+    });
+  return (
+    <BasicDocinfo
+      docName={docData.name}
+      designation={docData.designation}
+      hospital={docData.hospital}
+      operatingHours={docData.working_hrs}
+      lastVisited="Last Visited: 12/12/2020"
+    />
+  );
+};
+
+export default function DoctorsConsultedLanding(props: DocinfoProps) {
   return (
     <div>
       <div className="w-[100%] text-4xl font-bold p-[3vw]">
         Doctors Consulted
       </div>
       <div className="grid grid-cols-3">
-        {props.docID.map((ID, i) => {
-
-          const [docData, setDocData] = useState({} as any);
-
-          axios.get(`http://3.82.104.37:8000/doc/?id=${ID.slice(0,10)}`).then((res) => {
-            console.log(res.data);
-            setDocData(res.data);
-          });
-          return (
-            <BasicDocinfo
-              key={i}
-              docName={docData.name}
-              designation={docData.designation}
-              hospital={docData.hospital}
-              operatingHours={docData.working_hrs}
-              lastVisited="Last Visited: 12/12/2020"
-            />
-          );
-        })}
+        {props.docID.map((ID, i) => (
+          <Doctor key={i} ID={ID} />
+        ))}
       </div>
     </div>
   );

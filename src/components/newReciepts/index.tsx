@@ -946,6 +946,7 @@ export default function NewReciepts() {
                     {dosageData &&
                       dosageData.map((data, key) => (
                         <DrugCell
+                        key={key}
                           drugname={data.DrugName}
                           drugclass={data.DrugClass}
                           dosage={data.dosage}
@@ -1014,6 +1015,7 @@ export default function NewReciepts() {
                     {dosageData &&
                       dosageData.map((data, key) => (
                         <DrugCell
+                          key={key}
                           drugname={data.DrugName}
                           drugclass={data.DrugClass}
                           dosage={data.dosage}
