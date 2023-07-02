@@ -100,7 +100,9 @@ export default function Landing(props: LandingProps) {
           </a>
         </div>
       </div>
-      <div className=""></div>
+      <div className="w-[20vw] paddin">
+        some
+      </div>
     </div>
   );
 }

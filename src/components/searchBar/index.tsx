@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function SearchBar() {
+export default function SearchBar({uuid}:{uuid:string}) {
   return (
     <div className="flex py-[4vh] px-[2vw] justify-between border-b-[2px] sticky">
       <form className="w-[55vw]">
@@ -107,8 +107,8 @@ export default function SearchBar() {
         </div>
       </form>
 
-      <div className="bg-[#545FDD] text-white rounded-xl p-[9px]">
-        UUID: 2568AER2415
+      <div className="bg-[#545FDD] text-white rounded-xl p-[9px] flex">
+        <div className="font-bold">UUID :</div> {uuid}
       </div>
     </div>
   );
