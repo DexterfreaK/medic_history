@@ -1,11 +1,14 @@
-
-
+import axios from "axios";
+import { useState } from "react";
 interface BasicDocinfoProps {
-  docName:String;
+  docName: String;
   designation: string;
   hospital: string;
   operatingHours: string;
   lastVisited: string;
+}
+interface DocinfoProps {
+  docID: Array<string>;
 }
 
 function BasicDocinfo(props: BasicDocinfoProps) {
@@ -21,7 +24,9 @@ function BasicDocinfo(props: BasicDocinfoProps) {
         <div className="my-[2vh]">
           <p className="text-gray-500">{props.lastVisited}</p>
           <p className="text-gray-500">{props.hospital}</p>
-          <p className="text-gray-500">Operating Hours : {props.operatingHours}</p>
+          <p className="text-gray-500">
+            Operating Hours : {props.operatingHours}
+          </p>
         </div>
       </div>
       <img
@@ -33,24 +38,33 @@ function BasicDocinfo(props: BasicDocinfoProps) {
   );
 }
 
-export default function DoctorsConsultedLanding() {
+export default function DoctorsConsultedLanding(props: DocinfoProps) {
+
   return (
     <div>
       <div className="w-[100%] text-4xl font-bold p-[3vw]">
         Doctors Consulted
       </div>
       <div className="grid grid-cols-3">
-        {new Array(4).fill(0).map((_, i) => (
-          <BasicDocinfo
-            key={i}
-            docName={"Dr Mansingh Singh"}
-            designation={"Cardiologist"}
-            hospital={"Apollo Hospital"}
-            operatingHours={"9am to 5pm"}
-            lastVisited="Last Visited: 12/12/2020"
-            
-          />
-        ))}
+        {props.docID.map((ID, i) => {
+
+          const [docData, setDocData] = useState({} as any);
+
+          axios.get(`http://3.82.104.37:8000/doc/?id=${ID.slice(0,10)}`).then((res) => {
+            console.log(res.data);
+            setDocData(res.data);
+          });
+          return (
+            <BasicDocinfo
+              key={i}
+              docName={docData.name}
+              designation={docData.designation}
+              hospital={docData.hospital}
+              operatingHours={docData.working_hrs}
+              lastVisited="Last Visited: 12/12/2020"
+            />
+          );
+        })}
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ export default function Home() {
 
   const [docData, setDocData] = useState({} as any);
   useEffect(() => {
-    axios.get(`http://3.83.94.126:8000/doc/?id=${docID}`).then((res) => {
+    axios.get(`http://3.82.104.37:8000/doc/?id=${docID}`).then((res) => {
       setDocData(res.data);
       localStorage.setItem("doctorData", JSON.stringify(res.data));
     });

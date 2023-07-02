@@ -8,14 +8,18 @@ import { useEffect, useState } from "react";
 import DoctorsConsultedLanding from "@/components/doctorsConsultedLanding";
 
 export default function Home() {
-  const docID = "3cbb30bf-c";
+  const patientId = "64aa3e4e-5";
 
-  const [docData, setDocData] = useState({} as any);
+  const [docData, setDocData] = useState([] as any);
+
   useEffect(() => {
-    axios.get(`http://3.83.94.126:8000/doc/?id=${docID}`).then((res) => {
-      setDocData(res.data);
-      localStorage.setItem("doctorData", JSON.stringify(res.data));
-    });
+    axios
+      .get(`http://3.82.104.37:8000/patient/?id=${patientId}`)
+      .then((res) => {
+        setDocData(res.data.doc);
+        console.log(res.data.doc);
+        localStorage.setItem("doctorData", JSON.stringify(res.data));
+      });
   }, []);
 
   return (
@@ -29,7 +33,7 @@ export default function Home() {
       />
       <div className="ml-[16rem]">
         <SearchBar uuid={docData.short_uuid} />
-        <DoctorsConsultedLanding />
+        <DoctorsConsultedLanding docID={docData}/>
       </div>
     </main>
   );

@@ -11,7 +11,7 @@ export default function Timeline() {
   const [patientData, setPatientData] = useState({} as any);
 
   useEffect(() => {
-    axios.get(`http://3.83.94.126:8000/patient/?id=${uuid}`).then((res) => {
+    axios.get(`http://3.82.104.37:8000/patient/?id=${uuid}`).then((res) => {
       setPatientData(res.data);
     });
   }, []);

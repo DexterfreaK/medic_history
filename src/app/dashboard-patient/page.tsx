@@ -9,13 +9,13 @@ import { useEffect ,useState} from "react";
 
 export default function DasboardPatient() {
 
-  const uuid = "4b5df29f-9";
+  const uuid = "64aa3e4e-5";
   const [patientData, setPatientData] = useState({} as any);
 
   useEffect(() => {
-    axios.get(`http://3.83.94.126:8000/patient/?id=${uuid}`).then((res) => {
-      setPatientData(res.data)
-      localStorage.setItem("patientData",JSON.stringify(res.data))
+    axios.get(`http://3.82.104.37:8000/patient/?id=${uuid}`).then((res) => {
+      setPatientData(res.data);
+      localStorage.setItem("patientData", JSON.stringify(res.data));
     });
   }, []);
   return (
